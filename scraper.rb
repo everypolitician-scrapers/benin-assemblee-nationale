@@ -1,25 +1,65 @@
-# This is a template for a Ruby scraper on morph.io (https://morph.io)
-# including some code snippets below that you should find helpful
+#!/bin/env ruby
+# encoding: utf-8
 
-# require 'scraperwiki'
-# require 'mechanize'
-#
-# agent = Mechanize.new
-#
-# # Read in a page
-# page = agent.get("http://foo.com")
-#
-# # Find somehing on the page using css selectors
-# p page.at('div.content')
-#
-# # Write out to the sqlite database using scraperwiki library
-# ScraperWiki.save_sqlite(["name"], {"name" => "susan", "occupation" => "software developer"})
-#
-# # An arbitrary query against the database
-# ScraperWiki.select("* from data where 'name'='peter'")
+require 'scraperwiki'
+require 'nokogiri'
+require 'open-uri'
 
-# You don't have to do things with the Mechanize or ScraperWiki libraries.
-# You can use whatever gems you want: https://morph.io/documentation/ruby
-# All that matters is that your final data is written to an SQLite database
-# called "data.sqlite" in the current working directory which has at least a table
-# called "data".
+require 'colorize'
+require 'pry'
+require 'csv'
+require 'open-uri/cached'
+OpenURI::Cache.cache_path = '.cache'
+
+def noko_for(url)
+  Nokogiri::HTML(open(url).read) 
+end
+
+def scrape_list(url)
+  noko = noko_for(url)
+  noko.css('#cbUserTable td.cbUserListCol1').each do |row|
+    mp_url = row.css('.cbUserListFC_firstname a/@href').text
+    scrape_mp(mp_url)
+  end
+end
+
+def gender(str)
+  return if str.nil? || str.empty?
+  return 'male' if str.downcase == 'masculin'
+  return 'female' if str.downcase == 'féminin'
+  raise "unexpected gender: #{str}"
+end
+
+def scrape_mp(url)
+  noko = noko_for(URI.encode url)
+  cell = ->(id) { noko.css("#cbfv_#{id}").text.strip }
+  data = { 
+    id: url.split('/').last,
+    name: noko.css('#cbProfileTitle').text.strip,
+    family_name: cell.(48),
+    given_name: cell.(46),
+    gender: gender(cell.(122)),
+    # JS protected
+    # email: cell.(50),
+    party: cell.(91),
+    faction: cell.(92),
+    faction_id: cell.(92).gsub(/[\,\-\–]/,'').gsub(/\s+/, '_').downcase,
+    area_id: cell.(95),
+    area: cell.(96),
+    statut: cell.(97),
+    image: noko.css('#cbfv_29 img/@src').text,
+    term: 6,
+    source: url
+  }
+  puts "#{data[:id]} -> #{data[:faction]} = #{data[:faction_id]}"
+  ScraperWiki.save_sqlite([:id, :term], data)
+end
+
+term = {
+  id: 6,
+  name: '6e législature',
+  start_date: '2015-04-26',
+}
+ScraperWiki.save_sqlite([:id], term, 'terms')
+
+scrape_list('http://www.assemblee-nationale.bj/fr/deputes/listes-des-deputes')
