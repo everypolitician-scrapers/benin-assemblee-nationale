@@ -48,7 +48,7 @@ def scrape_mp(url)
     area: cell.(96),
     statut: cell.(97),
     image: noko.css('#cbfv_29 img/@src').text,
-    term: 6,
+    term: 7,
     source: url
   }
   puts "#{data[:id]} -> #{data[:faction]} = #{data[:faction_id]}"
