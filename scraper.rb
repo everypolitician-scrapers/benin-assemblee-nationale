@@ -1,5 +1,6 @@
 #!/bin/env ruby
 # encoding: utf-8
+# frozen_string_literal: true
 
 require 'nokogiri'
 require 'open-uri'
@@ -10,7 +11,7 @@ require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
 
 def noko_for(url)
-  Nokogiri::HTML(open(url).read) 
+  Nokogiri::HTML(open(url).read)
 end
 
 def scrape_list(url)
@@ -29,28 +30,28 @@ def gender(str)
 end
 
 def scrape_mp(url)
-  noko = noko_for(URI.encode url)
+  noko = noko_for(URI.encode(url))
   cell = ->(id) { noko.css("#cbfv_#{id}").text.strip }
-  data = { 
-    id: url.split('/').last,
-    name: noko.css('#cbProfileTitle').text.strip,
-    family_name: cell.(48),
-    given_name: cell.(46),
-    gender: gender(cell.(122)),
+  data = {
+    id:          url.split('/').last,
+    name:        noko.css('#cbProfileTitle').text.strip,
+    family_name: cell.call(48),
+    given_name:  cell.call(46),
+    gender:      gender(cell.call(122)),
     # JS protected
-    # email: cell.(50),
-    party: cell.(91),
-    faction: cell.(92),
-    faction_id: cell.(92).gsub(/[\,\-\–]/,'').gsub(/\s+/, '_').downcase,
-    area_id: cell.(95),
-    area: cell.(96),
-    statut: cell.(97),
-    image: noko.css('#cbfv_29 img/@src').text,
-    term: 7,
-    source: url
+    # email: cell.call(50),
+    party:       cell.call(91),
+    faction:     cell.call(92),
+    faction_id:  cell.call(92).gsub(/[\,\-]/, '').gsub(/\s+/, '_').downcase,
+    area_id:     cell.call(95),
+    area:        cell.call(96),
+    statut:      cell.call(97),
+    image:       noko.css('#cbfv_29 img/@src').text,
+    term:        7,
+    source:      url,
   }
-  puts "#{data[:id]} -> #{data[:faction]} = #{data[:faction_id]}"
-  ScraperWiki.save_sqlite([:id, :term], data)
+  # puts data
+  ScraperWiki.save_sqlite(%i(id term), data)
 end
 
 scrape_list('http://www.assemblee-nationale.bj/fr/deputes/listes-des-deputes')
