@@ -1,0 +1,43 @@
+---
+request:
+  method: get
+  uri: http://www.assemblee-nationale.bj/fr/profile-view/userprofile/jeremie_adomahou
+  body:
+    encoding: US-ASCII
+    string: ''
+  headers:
+    Accept-Encoding:
+    - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+    Accept:
+    - "*/*"
+    User-Agent:
+    - Ruby
+response:
+  status:
+    code: 200
+    message: OK
+  headers:
+    Date:
+    - Wed, 11 Jan 2017 15:28:12 GMT
+    Server:
+    - Apache
+    Set-Cookie:
+    - 3e746f1ab9d6d4f7a365c55f4ce61b99=e106ee71bdad733c518470decd781859; path=/
+    - c51d5d9bda829df583dd9004ae3f5152=fr-FR; expires=Thu, 11-Jan-2018 15:28:12 GMT;
+      path=/
+    P3p:
+    - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
+    X-Content-Encoded-By:
+    - Joomla! 2.5
+    Cache-Control:
+    - no-cache
+    Pragma:
+    - no-cache
+    Transfer-Encoding:
+    - chunked
+    Content-Type:
+    - text/html; charset=utf-8
+  body:
+    encoding: ASCII-8BIT
+  http_version: 
+recorded_at: Wed, 11 Jan 2017 15:28:14 GMT
