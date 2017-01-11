@@ -1,0 +1,43 @@
+---
+request:
+  method: get
+  uri: http://www.assemblee-nationale.bj/fr/profile-view/userprofile/augustin_ahouanvoebla
+  body:
+    encoding: US-ASCII
+    string: ''
+  headers:
+    Accept-Encoding:
+    - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+    Accept:
+    - "*/*"
+    User-Agent:
+    - Ruby
+response:
+  status:
+    code: 200
+    message: OK
+  headers:
+    Date:
+    - Wed, 11 Jan 2017 16:12:05 GMT
+    Server:
+    - Apache
+    Set-Cookie:
+    - 3e746f1ab9d6d4f7a365c55f4ce61b99=edc21756aa8f38e868b6d7b8dfe95674; path=/
+    - c51d5d9bda829df583dd9004ae3f5152=fr-FR; expires=Thu, 11-Jan-2018 16:12:06 GMT;
+      path=/
+    P3p:
+    - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
+    X-Content-Encoded-By:
+    - Joomla! 2.5
+    Cache-Control:
+    - no-cache
+    Pragma:
+    - no-cache
+    Content-Type:
+    - text/html; charset=utf-8
+    Content-Length:
+    - '13231'
+  body:
+    encoding: ASCII-8BIT
+  http_version: 
+recorded_at: Wed, 11 Jan 2017 16:12:07 GMT
