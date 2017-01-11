@@ -2,9 +2,8 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'nokogiri'
-require 'open-uri'
 require 'pry'
+require 'scraped'
 require 'scraperwiki'
 
 require 'open-uri/cached'
@@ -31,10 +30,10 @@ end
 
 def scrape_mp(url)
   noko = noko_for(URI.encode(url))
-  cell = ->(id) { noko.css("#cbfv_#{id}").text.strip }
+  cell = ->(id) { noko.css("#cbfv_#{id}").text.tidy }
   data = {
     id:          url.split('/').last,
-    name:        noko.css('#cbProfileTitle').text.strip,
+    name:        noko.css('#cbProfileTitle').text.tidy,
     family_name: cell.call(48),
     given_name:  cell.call(46),
     gender:      gender(cell.call(122)),
