@@ -18,12 +18,12 @@ response:
     message: OK
   headers:
     Date:
-    - Mon, 24 Apr 2017 22:21:45 GMT
+    - Mon, 24 Apr 2017 22:26:23 GMT
     Server:
     - Apache
     Set-Cookie:
-    - 3e746f1ab9d6d4f7a365c55f4ce61b99=7a21864c9bd3c9cdf361c4cff2cb12c6; path=/
-    - c51d5d9bda829df583dd9004ae3f5152=fr-FR; expires=Tue, 24-Apr-2018 22:21:45 GMT;
+    - 3e746f1ab9d6d4f7a365c55f4ce61b99=5bb333f0c90e739401b53c488c2c06c1; path=/
+    - c51d5d9bda829df583dd9004ae3f5152=fr-FR; expires=Tue, 24-Apr-2018 22:26:23 GMT;
       path=/
     P3p:
     - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
@@ -40,4 +40,4 @@ response:
   body:
     encoding: ASCII-8BIT
   http_version: 
-recorded_at: Mon, 24 Apr 2017 22:21:46 GMT
+recorded_at: Mon, 24 Apr 2017 22:26:24 GMT
