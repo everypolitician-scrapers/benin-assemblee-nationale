@@ -18,26 +18,18 @@ response:
     message: OK
   headers:
     Date:
-    - Fri, 16 Jun 2017 00:14:13 GMT
+    - Sat, 17 Jun 2017 21:13:34 GMT
     Server:
     - Apache
     Set-Cookie:
-    - 3e746f1ab9d6d4f7a365c55f4ce61b99=1f5ceeb33979a1e498d3a977702556d1; path=/
-    - c51d5d9bda829df583dd9004ae3f5152=fr-FR; expires=Sat, 16-Jun-2018 00:14:13 GMT;
+    - 3e746f1ab9d6d4f7a365c55f4ce61b99=c5910cd94c48f4343f00b1a0d9f1785c; path=/
+    - c51d5d9bda829df583dd9004ae3f5152=fr-FR; expires=Sun, 17-Jun-2018 21:13:34 GMT;
       path=/
-    P3p:
-    - CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"
-    X-Content-Encoded-By:
-    - Joomla! 2.5
-    Cache-Control:
-    - no-cache
-    Pragma:
-    - no-cache
-    Transfer-Encoding:
-    - chunked
+    Content-Length:
+    - '0'
     Content-Type:
-    - text/html; charset=utf-8
+    - text/html
   body:
-    encoding: ASCII-8BIT
+    encoding: UTF-8
   http_version: 
-recorded_at: Fri, 16 Jun 2017 00:14:15 GMT
+recorded_at: Sat, 17 Jun 2017 21:13:34 GMT
